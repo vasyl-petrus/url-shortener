@@ -3,7 +3,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 20% auto;
+  margin: 10% auto;
 }
 
 .App .container {
@@ -56,6 +56,7 @@
 .App .short-url {
   margin: 15px auto;
   cursor: pointer;
+  word-break: break-all;
 }
 
 .App .short-url:hover {
