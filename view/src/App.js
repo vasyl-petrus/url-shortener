@@ -5,9 +5,18 @@ function App() {
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState();
+  const [copied, setCopied] = useState(false);
 
   const handleChange = (e) => {
     setInputValue(e.target.value);
+  };
+
+  const handleCopy = (e) => {
+    navigator.clipboard.writeText(data.shortUrl);
+    setCopied(true);
+    setInterval(() => {
+      setCopied(false);
+    }, 2000);
   };
 
   const onSubmit = (e) => {
@@ -22,16 +31,24 @@ function App() {
         setData(data);
         setLoading(false);
       })
-      .catch((err) => console.error(err));
-    console.log({ isLoading, data });
+      .catch((err) => console.log({ err }));
   };
 
   return (
     <div className='App'>
-      <form className='App' onSubmit={onSubmit}>
-        <input onChange={handleChange} />
-        <button>Generate short url</button>
-      </form>
+      <div className='container'>
+        <form className='form' onSubmit={onSubmit}>
+          <input onChange={handleChange} />
+          <button>Generate short url</button>
+        </form>
+        {data && (
+          <span className='short-url' onClick={handleCopy}>
+            {data.shortUrl}
+          </span>
+        )}
+        <br />
+        {copied && <span>Copied!</span>}
+      </div>
     </div>
   );
 }
