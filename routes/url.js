@@ -10,7 +10,7 @@ router.post('/shorten', async (req, res) => {
   const { originalUrl } = req.body;
 
   if (!validUrl.isUri(baseUrl)) return res.status(401).json('Invalid base URL');
-  if (!validUrl.isUri(originalUrl)) return res.status(401).json('Invalid long URL');
+  if (!validUrl.isUri(originalUrl)) return res.status(401).json('Invalid URL');
 
   try {
     let url = await Url.findOne({
