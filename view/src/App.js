@@ -6,7 +6,7 @@ function App() {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState();
   const [copied, setCopied] = useState(false);
-
+  const [error, setError] = useState('');
   const handleChange = (e) => {
     setInputValue(e.target.value);
   };
@@ -28,6 +28,10 @@ function App() {
     })
       .then((response) => response.json())
       .then((data) => {
+        if (typeof data === 'string') {
+          alert(data);
+        }
+
         setData(data);
         setLoading(false);
       })
