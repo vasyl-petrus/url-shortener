@@ -1,4 +1,5 @@
 # url-shortener
+A url shortener with expressjs mongoDB and react
 
 ## How to setup and run project
 
